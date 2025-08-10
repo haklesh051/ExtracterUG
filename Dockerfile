@@ -5,7 +5,8 @@ FROM python:latest
 RUN apt update && \
     apt upgrade -y && \
     apt install -y git curl ffmpeg aria2 \
-    cmake build-essential libboost-dev
+    cmake build-essential libboost-dev \
+    libarrow-dev libarrow-python-dev
 
 # Updating Pip Packages
 RUN pip install --upgrade pip
