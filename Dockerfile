@@ -1,6 +1,6 @@
 # Python Based Docker
-FROM python:latest
-
+#FROM python:latest
+FROM python:3.9.7-slim-buster
 # Installing Packages and Build Dependencies for pyarrow
 RUN apt update && \
     apt upgrade -y && \
