@@ -9,17 +9,17 @@ hachoir
 cloudscraper
 pycryptodome
 pytz
-certifi==2023.11.17  
+certifi==2023.11.17
 charset-normalizer==3.3.2
 databricks-sql-connector==3.0.1
 et-xmlfile==1.1.0
 idna==3.6
-#lz4==4.3.3
+lz4==4.3.3
 numpy==1.26.3
 oauthlib==3.2.2
 openpyxl==3.1.2
-#pandas==2.2.0
-#pyarrow==14.0.2
+pandas==2.2.0
+# pyarrow==14.0.2  <-- Removed for Heroku compatibility
 python-dateutil==2.8.2
 python-dotenv==1.0.0
 pytz==2023.3.post1
@@ -33,5 +33,3 @@ urllib3==2.1.0
 bs4
 flask
 pyromod
-
-
