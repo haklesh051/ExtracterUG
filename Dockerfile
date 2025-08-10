@@ -1,10 +1,11 @@
 # Python Based Docker
 FROM python:latest
 
-# Installing Packages
+# Installing Packages and Build Dependencies for pyarrow
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y git curl ffmpeg aria2
+    apt install -y git curl ffmpeg aria2 \
+    cmake build-essential libboost-dev
 
 # Updating Pip Packages
 RUN pip install --upgrade pip
