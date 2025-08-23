@@ -1,7 +1,6 @@
-## Python Based Docker
 FROM python:3.9-slim-bookworm
 
-# System dependencies
+# Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     git curl ffmpeg aria2 \
@@ -12,14 +11,14 @@ RUN apt-get update && \
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir pyarrow
 
-# Copy requirements
-COPY requirements.txt /requirements.txt
+# Set working directory
+WORKDIR /app
 
-# Install other requirements
-RUN pip install --no-cache-dir -r /requirements.txt
+# Copy project files
+COPY . .
 
-# Working dir
-WORKDIR /EXTRACTOR
-COPY start.sh /start.sh
+# Install Python requirements
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["bash", "/start.sh"]
+# Run bot
+CMD ["bash", "start.sh"]
