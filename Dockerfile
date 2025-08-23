@@ -1,12 +1,16 @@
 # Python Based Docker
-#FROM python:latest
 FROM python:3.9.7-slim-buster
+
+# Fix buster repo (archived)
+RUN sed -i 's|deb.debian.org/debian|archive.debian.org/debian|g' /etc/apt/sources.list && \
+    sed -i '/security.debian.org/s/^/#/' /etc/apt/sources.list
+
 # Installing Packages and Build Dependencies for pyarrow
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y git curl ffmpeg aria2 \
+RUN apt-get update && \
+    apt-get install -y git curl ffmpeg aria2 \
     cmake build-essential libboost-dev \
-    libarrow-dev libarrow-python-dev
+    libarrow-dev libarrow-python-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Updating Pip Packages
 RUN pip install --upgrade pip
