@@ -1,9 +1,5 @@
 # Python Based Docker
-FROM python:3.9.7-slim-buster
-
-# Fix buster repo (archived)
-RUN sed -i 's|deb.debian.org/debian|archive.debian.org/debian|g' /etc/apt/sources.list && \
-    sed -i '/security.debian.org/s/^/#/' /etc/apt/sources.list
+FROM python:3.9-slim-bookworm
 
 # Installing Packages and Build Dependencies for pyarrow
 RUN apt-get update && \
