@@ -304,4 +304,9 @@ async def extract_handler(client, message):
 # app.start()
 
 # With this:
+# Replace
+app.start()
+idle()
+
+# With
 app.run()
