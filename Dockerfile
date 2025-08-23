@@ -1,24 +1,29 @@
-FROM python:3.9-slim-bookworm
+# Python 3.11 (safe for Pyrofork + modern libs)
+FROM python:3.11-slim-bookworm
 
-# Install system dependencies
+# Install system packages
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    git curl ffmpeg aria2 \
-    cmake build-essential libboost-dev \
+    apt-get install -y git curl ffmpeg aria2 \
+    build-essential cmake libboost-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Upgrade pip & install pyarrow
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir pyarrow
+# Upgrade pip
+RUN pip install --upgrade pip
 
-# Set working directory
+# Copy requirements
+COPY requirements.txt /requirements.txt
+
+# Install requirements
+RUN pip install --no-cache-dir -r /requirements.txt
+
+# Create working directory
 WORKDIR /app
 
-# Copy project files
+# Copy all project files
 COPY . .
 
-# Install Python requirements
-RUN pip install --no-cache-dir -r requirements.txt
+# Make start.sh executable
+RUN chmod +x /start.sh
 
 # Run bot
-CMD ["bash", "start.sh"]
+CMD ["/bin/bash", "/start.sh"]
