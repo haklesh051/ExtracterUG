@@ -19,11 +19,11 @@ RUN pip install --no-cache-dir -r /requirements.txt
 # Create working directory
 WORKDIR /app
 
-# Copy all project files
+# Copy all project files into /app
 COPY . .
 
-# Make start.sh executable
-RUN chmod +x /start.sh
+# Make start.sh executable (ab /app me hai)
+RUN chmod +x /app/start.sh
 
 # Run bot
-CMD ["/bin/bash", "/start.sh"]
+CMD ["/bin/bash", "/app/start.sh"]
