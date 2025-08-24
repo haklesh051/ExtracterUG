@@ -33,7 +33,7 @@ async def gen_link(app, chat_id):
 # Subscribe check for user
 async def subscribe(app, message):
     # Use public channel username
-    update_channel = "bot_haklesh"
+    update_channel = "-1002863059177"
     
     url = await gen_link(app, update_channel)
 
